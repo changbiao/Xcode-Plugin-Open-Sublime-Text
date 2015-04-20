@@ -20,3 +20,25 @@ Tested in Xcode 5.1.1 + with Sublime Text 3
 
 ###Known Limitations
 - This plugin assumes the existence of `/Applications/Sublime Text.app` (the default for Sublime Text 3), and there is not currently a way to override that assumption.
+
+
+###### And my Xcode6.3(6D570) UUID is 9F75337B-21B4-4ADC-B558-F9CADF7073A7;
+###### Xcode IDEKit.h has changed；So I edit OSTUtil.h:
+```
+IDEWorkspaceWindowController* OSTLastActiveWindowController(){
+// TODO: Must update IDEKit.h for Xcode5
+static IDEWorkspaceWindowController* workspace = nil;
+if ([[IDEWorkspaceWindow class] respondsToSelector:@selector(lastActiveWorkspaceWindow)])
+{   //for Xcode6.3
+workspace = [IDEWorkspaceWindow performSelector:@selector(lastActiveWorkspaceWindow)];
+}
+else if([[IDEWorkspaceWindow class] respondsToSelector:@selector(lastActiveWorkspaceWindowController)])
+{
+workspace = [IDEWorkspaceWindow performSelector:@selector(lastActiveWorkspaceWindowController)];
+}
+NSLog(@"插件获取工作区控制器: %@", workspace);
+return workspace;
+}
+```
+*Thanks for the plugin, so helpful!*
+

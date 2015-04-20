@@ -13,12 +13,6 @@
 #import "IDEKit.h"
 
 
-IDEWorkspaceWindowController* OSTLastActiveWindowController(){
-
-    // TODO: Must update IDEKit.h for Xcodr5
-    return [IDEWorkspaceWindow performSelector:@selector(lastActiveWorkspaceWindowController)];
-}
-
 IDEWorkspaceTabController* OSTLastActiveWorkspaceTabController(){
     return [OSTLastActiveWindowController() activeWorkspaceTabController];
 }

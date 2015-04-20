@@ -20,7 +20,7 @@ typedef struct OSTCursorLocation {
 
 static OSTOpenInSublimeText *sharedPlugin;
 
-static NSString * const kOSTMenuItemTitle = @"Open In Sublime Text";
+static NSString * const kOSTMenuItemTitle = @"在Sublime Text中打开";
 
 @interface OSTOpenInSublimeText()
 
@@ -55,7 +55,7 @@ static NSString * const kOSTMenuItemTitle = @"Open In Sublime Text";
     if (self = [super init]) {
         // reference to plugin's bundle, for resource acccess
         self.bundle = plugin;
-
+        NSLog(@"初始化插件包:%@", plugin);
         [self registerForNotifications];
     }
     return self;
@@ -64,12 +64,12 @@ static NSString * const kOSTMenuItemTitle = @"Open In Sublime Text";
 #pragma mark - Notifications
 
 - (void) registerForNotifications {
-
+    NSLog(@"注册监听通知信息");
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeKey:) name:NSWindowDidBecomeKeyNotification object:nil];
 }
 
 - (void) windowDidBecomeKey:(NSNotification *)notification {
-
+    NSLog(@"接收到通知:%@", notification);
     [self setupMenuIfNeeded];
 }
 
@@ -78,7 +78,7 @@ static NSString * const kOSTMenuItemTitle = @"Open In Sublime Text";
 - (void) setupMenuIfNeeded {
     
     NSMenu *editorMenu = [[[NSApp mainMenu] itemWithTitle:@"Editor"] submenu];
-    
+    NSLog(@"安装设置插件，当前菜单：%@", editorMenu);
     // Add the menu item if it isn't there already
     if (![editorMenu itemWithTitle:kOSTMenuItemTitle]) {
         [self addOSTMenuItemToMenu:editorMenu];
