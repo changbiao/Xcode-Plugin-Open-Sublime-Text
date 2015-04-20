@@ -12,6 +12,20 @@
 #import "DVTKit.h"
 #import "IDEKit.h"
 
+IDEWorkspaceWindowController* OSTLastActiveWindowController(){
+    // TODO: Must update IDEKit.h for Xcode5
+    static IDEWorkspaceWindowController* workspace = nil;
+    if ([[IDEWorkspaceWindow class] respondsToSelector:@selector(lastActiveWorkspaceWindow)])
+    {   //for Xcode6.3
+        workspace = [IDEWorkspaceWindow performSelector:@selector(lastActiveWorkspaceWindow)];
+    }
+    else if([[IDEWorkspaceWindow class] respondsToSelector:@selector(lastActiveWorkspaceWindowController)])
+    {
+        workspace = [IDEWorkspaceWindow performSelector:@selector(lastActiveWorkspaceWindowController)];
+    }
+    NSLog(@"插件获取工作区控制器: %@", workspace);
+    return workspace;
+}
 
 IDEWorkspaceTabController* OSTLastActiveWorkspaceTabController(){
     return [OSTLastActiveWindowController() activeWorkspaceTabController];

@@ -316,6 +316,7 @@
 				INFOPLIST_FILE = "OpenInSublimeText/OpenInSublimeText-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.9;
 				WRAPPER_EXTENSION = xcplugin;
 			};
 			name = Debug;
@@ -336,6 +337,7 @@
 				INFOPLIST_FILE = "OpenInSublimeText/OpenInSublimeText-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.9;
 				WRAPPER_EXTENSION = xcplugin;
 			};
 			name = Release;
